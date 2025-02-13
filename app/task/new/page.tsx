@@ -40,7 +40,7 @@ const NewTaskPage = () => {
                             <Input
                                 type="text"
                                 value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={(e:any) => setTitle(e.target.value)}
                                 placeholder="Enter task title"
                             />
                         </FormControl>
@@ -53,4 +53,4 @@ const NewTaskPage = () => {
     );
 };
 
-export default NewTaskPage;</div>
+export default NewTaskPage;

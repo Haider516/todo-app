@@ -1,15 +1,8 @@
-// import { Button } from '@/components/ui/button';
-// import React from 'react';
+"use client";
 
-// const Task: React.FC<TaskProps> = ({ id, title, onDelete, onEdit }) => {
-//     return (
-//         <div className="task">
-//             <h3>{title}</h3>
-//             <Button onClick={() => onEdit(id)}>Edit</Button>
-//             <Button onClick={() => onDelete(id)}>Delete</Button>
-//         </div>
-//     );
-// };
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+
 
 
 interface TaskProps {
@@ -19,8 +12,6 @@ interface TaskProps {
     onEdit: (id: number) => void;
 }
 
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
 
 const Task: React.FC<TaskProps> = ({ id, title, onDelete, onEdit }) => {
     const [taskTitle, setTaskTitle] = useState(title);
