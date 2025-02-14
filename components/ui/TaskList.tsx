@@ -4,6 +4,8 @@
 import { useState, useEffect } from "react";
 import TaskItem from "./TaskItem";
 import { useRouter } from "next/navigation";
+import { Button } from "./button";
+import { signOut } from "next-auth/react";
 
 interface Task {
   id: string;
@@ -47,6 +49,7 @@ export default function TaskList() {
 
 
   return (
+    
     <div className="space-y-4">
       {tasks.length > 0 ? (
         tasks.map((task) => (
@@ -56,5 +59,10 @@ export default function TaskList() {
         <p className="text-center text-gray-500">No tasks found. Add a new task!</p>
       )}
     </div>
+
+
+    
+      
+    
   );
 }

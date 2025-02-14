@@ -24,12 +24,12 @@ const Task: React.FC<TaskProps> = ({ id, title, onDelete, onEdit }) => {
         }
     };
 
-    return (
+  return (
         <div className="task">
             <h3>{taskTitle}</h3>
             <Button onClick={handleEdit}>Edit</Button>
             <Button onClick={() => onDelete(id)}>Delete</Button>
-        </div>
+      </div>
     );
 };
 
