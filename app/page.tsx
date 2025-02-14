@@ -5,7 +5,6 @@ import { AppSidebar } from "@/components/ui/app-sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@radix-ui/react-separator";
 
-
 export default function Home() {
   return (
 
@@ -33,6 +32,8 @@ export default function Home() {
                   <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
+             
+
             </Breadcrumb>
           </div>
         </header>

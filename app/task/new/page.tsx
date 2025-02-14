@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Input, Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from 'shadcn/ui';
-import { prisma } from '@/lib/prisma';
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const NewTaskPage = () => {
     const [title, setTitle] = useState('');

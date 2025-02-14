@@ -1,13 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
-
 
 datasource db {
   provider = "postgresql"
@@ -19,6 +12,8 @@ model Task {
   title     String
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -27,4 +22,32 @@ model User {
   email    String  @unique
   password String?
   image    String?
+  tasks    Task[]  // One-to-many relationship
+  accounts Account[]
+  sessions Session[]
+}
+
+
+model Session {
+  id           String  @id @default(cuid())
+  sessionToken String  @unique
+  userId       String
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?  // Optional, for OAuth
+  access_token      String?  // Optional, for OAuth
+  expires_at        Int?     // Optional, for OAuth
+  token_type        String?  // Optional
+  scope            String?   // Optional
+  id_token          String?  // Optional, for OAuth
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])  // Ensure unique OAuth logins
 }

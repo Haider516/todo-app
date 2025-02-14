@@ -20,7 +20,8 @@ interface Task {
 }
 
 export function DataTable() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]); 
+
   const router = useRouter();
 
   useEffect(() => {
