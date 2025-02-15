@@ -4,8 +4,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:1234@localhost:5432/todoTestApp"
+  url = env("DATABASE_URL")
 }
+
 
 model Task {
   id        String   @id @default(uuid())

@@ -1,59 +1,69 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { Button, Input, Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from 'shadcn/ui';
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form"; 
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const NewTaskPage = () => {
-    const [title, setTitle] = useState('');
-    const [error, setError] = useState('');
-    const router = useRouter();
+  const router = useRouter();
+  const [error, setError] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
+  // ✅ Initialize react-hook-form
+  const form = useForm({
+    defaultValues: { title: "" },
+  });
 
-        if (!title) {
-            setError('Title is required');
-            return;
-        }
+  const handleSubmit = async (data: { title: string }) => {
+    setError("");
 
-        try {
-            await prisma.task.create({
-                data: {
-                    title,
-                },
-            });
-            router.push('/');
-        } catch (err) {
-            setError('Failed to create task');
-        }
-    };
+    if (!data.title.trim()) {
+      setError("Title is required");
+      return;
+    }
 
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Create New Task</h1>
-            <Form onSubmit={handleSubmit}>
-                <FormField>
-                    <FormItem>
-                        <FormLabel>Title</FormLabel>
-                        <FormControl>
-                            <Input
-                                type="text"
-                                value={title}
-                                onChange={(e:any) => setTitle(e.target.value)}
-                                placeholder="Enter task title"
-                            />
-                        </FormControl>
-                        {error && <FormMessage>{error}</FormMessage>}
-                    </FormItem>
-                </FormField>
-                <Button type="submit" className="mt-4">Create Task</Button>
-            </Form>
-        </div>
-    );
+    try {
+      const res = await fetch("/api/task", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: data.title }),
+      });
+
+      if (!res.ok) throw new Error("Failed to create task");
+
+      router.push("/"); 
+    } catch (err) {
+      setError("Failed to create task");
+    }
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Create New Task</h1>
+      
+    
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Enter task title" />
+                </FormControl>
+                <FormMessage>{error}</FormMessage>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="mt-4">Create Task</Button>
+        </form>
+      </Form>
+    </div>
+  );
 };
 
 export default NewTaskPage;

@@ -34,6 +34,8 @@ export async function POST(req: Request) {
 
   try {
     const { title } = await req.json();
+    console.log(title);
+    
     if (!title) {
       return NextResponse.json({ error: "Title is required" }, { status: 400 });
     }

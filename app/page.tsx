@@ -4,8 +4,14 @@ import Dashboard from "./dashboard/page";
 import { AppSidebar } from "@/components/ui/app-sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@radix-ui/react-separator";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+export default async function Home() {
+  const session = await getServerSession();
 
-export default function Home() {
+  if (!session) {
+    redirect("/auth/login"); 
+  }
   return (
 
     
