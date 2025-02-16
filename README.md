@@ -34,7 +34,7 @@ A full-stack Todo application built with **Next.js**, **Prisma**, **NextAuth**, 
 ## 🔧 Setup & Installation
 ### 1. Clone the repository
 ```sh
-git clone https://github.com/your-username/todo-app.git
+git clone https://github.com/Haider516/todo-app.git
 cd todo-app
 ```
 
