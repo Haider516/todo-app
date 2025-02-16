@@ -99,5 +99,5 @@ This project is licensed under the MIT License.
 
 ---
 
-Made with ❤️ by [Haider](https://github.com/Haider516)
+Made by [Haider](https://github.com/Haider516)
 
