@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo App
 
-## Getting Started
+A full-stack Todo application built with **Next.js**, **Prisma**, **NextAuth**, and **Tailwind CSS**.
 
-First, run the development server:
+## 🚀 Features
+- ✅ User authentication with **NextAuth.js**
+- 📄 Database management with **Prisma** and **PostgreSQL**
+- 🎨 UI components with **Radix UI** and **Tailwind CSS**
+- 🔐 Secure password hashing with **bcryptjs**
+- 🛠 Unit and integration testing with **Jest** and **Testing Library**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📦 Tech Stack
+- **Frontend:** Next.js (React 19, Tailwind CSS)
+- **Backend:** Next.js API Routes, Prisma ORM
+- **Database:** PostgreSQL (Hosted on **Neon.tech**)
+- **Authentication:** NextAuth.js
+- **Testing:** Jest, React Testing Library
+
+## 📂 Folder Structure
+```
+/todo-app
+│-- /components        # UI components
+│-- /pages             # Next.js pages
+│-- /prisma            # Prisma schema and migrations
+│-- /styles           # Global styles
+│-- /tests             # Jest test cases
+│-- prisma/schema.prisma  # Database schema
+│-- next.config.js     # Next.js configuration
+│-- tailwind.config.js # Tailwind configuration
+│-- package.json       # Dependencies & scripts
+│-- README.md          # Documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Setup & Installation
+### 1. Clone the repository
+```sh
+git clone https://github.com/your-username/todo-app.git
+cd todo-app
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Install dependencies
+```sh
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Configure environment variables
+Create a `.env` file in the root directory and add:
+```
+DATABASE_URL="postgresql://user:password@your-neon-db/todo-db"
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+```
 
-## Learn More
+### 4. Run database migrations
+```sh
+npx prisma migrate dev --name init
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Start the development server
+```sh
+npm run dev
+```
+Visit `http://localhost:3000` to view the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deployment on Vercel
+This project is deployed on **Vercel**. You can access it here:  
+🔗 **Live Demo:** [Todo App on Vercel](https://todo-bptpjt8vq-haiders-projects-7f64ac4f.vercel.app/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Deploying to Vercel
+To deploy your Next.js app to Vercel:
+1. Install Vercel CLI (if not installed):
+   ```sh
+   npm install -g vercel
+   ```
+2. Run the deployment command:
+   ```sh
+   vercel
+   ```
+3. Follow the CLI instructions to link your project and deploy.
 
-## Deploy on Vercel
+For more details, check out the [Next.js deployment guide](https://nextjs.org/docs/app/building-your-application/deploying).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 Available Scripts
+- **`npm run dev`** - Start development server
+- **`npm run build`** - Build for production
+- **`npm run start`** - Start production server
+- **`npm run lint`** - Lint code
+- **`npm run test`** - Run tests
+- **`npx prisma studio`** - Open Prisma database GUI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠 Testing
+Run Jest tests:
+```sh
+npm run test
+```
+
+## 📜 License
+This project is licensed under the MIT License.
+
+---
+
+Made with ❤️ by [Haider](https://github.com/Haider516)
+
